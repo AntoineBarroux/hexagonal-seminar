@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  hexagonal-seminar-api-postgres:
+    container_name: hexagonal-seminar-api-postgres
+    image: 'postgres:15.2-alpine'
+    ports:
+      - '5434:5432'
+    environment:
+      POSTGRES_USER: hexagonal-seminar
+      POSTGRES_PASSWORD: hexagonal-seminar
+      POSTGRES_DB: hexagonal-seminar

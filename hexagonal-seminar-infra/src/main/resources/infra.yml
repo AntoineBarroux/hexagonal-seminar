@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5434/hexagonal-seminar
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 3
+      initialization-fail-timeout: 60000
+      username: hexagonal-seminar
+      password: hexagonal-seminar
+  flyway:
+    clean-disabled: false
+    clean-on-validation-error: true
+    enabled: true
+    locations: classpath:/db/migration
+
+  jpa:
+    hibernate:
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
