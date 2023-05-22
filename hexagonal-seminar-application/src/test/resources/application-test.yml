@@ -1,0 +1,4 @@
+spring:
+  datasource:
+    url: jdbc:tc:postgresql:15.2://hexagonal-seminar-api
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
