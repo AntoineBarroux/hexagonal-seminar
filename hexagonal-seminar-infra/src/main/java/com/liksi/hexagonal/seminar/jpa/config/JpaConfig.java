@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
 @EnableJpaRepositories("com.liksi.hexagonal.seminar.jpa.adapters")
-@PropertySource(value = "classpath:infra.yml", factory = YamlPropertySourceFactory.class)
+@PropertySource(value = "classpath:jpa.yml", factory = YamlPropertySourceFactory.class)
 public class JpaConfig {
 }

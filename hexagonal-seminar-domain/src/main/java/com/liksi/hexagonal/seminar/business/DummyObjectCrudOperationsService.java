@@ -1,7 +1,7 @@
 package com.liksi.hexagonal.seminar.business;
 
 import com.liksi.hexagonal.seminar.model.DummyObject;
-import com.liksi.hexagonal.seminar.ports.DummyObjectDAO;
+import com.liksi.hexagonal.seminar.ports.persistence.DummyObjectDAO;
 
 import java.util.UUID;
 

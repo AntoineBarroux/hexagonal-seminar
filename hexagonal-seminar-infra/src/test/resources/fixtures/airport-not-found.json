@@ -1,0 +1,55 @@
+{
+  "request": {
+    "lang": "en",
+    "currency": "EUR",
+    "time": 1,
+    "id": "4hhwu2ystj6",
+    "server": "l",
+    "host": "airlabs.co",
+    "pid": 723198,
+    "key": {
+      "id": 24429,
+      "api_key": "e703b7dd-7e25-48a0-81a0-816ccd0a1879",
+      "type": "free",
+      "expired": "2023-06-19T00:00:00.000Z",
+      "registered": "2023-05-17T09:49:00.000Z",
+      "limits_by_hour": 2500,
+      "limits_by_minute": 250,
+      "limits_by_month": 1000,
+      "limits_total": 995
+    },
+    "params": {
+      "iata_code": "EMPTY",
+      "lang": "en"
+    },
+    "version": 9,
+    "method": "airports",
+    "client": {
+      "ip": "80.14.101.152",
+      "geo": {
+        "country_code": "FR",
+        "country": "France",
+        "continent": "Europe",
+        "lat": 48.86,
+        "lng": 2.35,
+        "timezone": "Europe/Paris"
+      },
+      "connection": {
+        "type": "cable/dsl",
+        "isp_code": 3215,
+        "isp_name": "Orange S.A."
+      },
+      "device": {},
+      "agent": {},
+      "karma": {
+        "is_blocked": false,
+        "is_crawler": false,
+        "is_bot": false,
+        "is_friend": false,
+        "is_regular": true
+      }
+    }
+  },
+  "response": [],
+  "terms": "Unauthorized access is prohibited and punishable by law. \nReselling data 'As Is' without AirLabs.Co permission is strictly prohibited. \nFull terms on https://airlabs.co/. \nContact us info@airlabs.co"
+}

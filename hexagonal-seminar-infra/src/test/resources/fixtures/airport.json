@@ -1,0 +1,64 @@
+{
+  "request": {
+    "lang": "en",
+    "currency": "EUR",
+    "time": 3,
+    "id": "o4gvymw3s5c",
+    "server": "l",
+    "host": "airlabs.co",
+    "pid": 3885061,
+    "key": {
+      "id": 24429,
+      "api_key": "XXXXXX",
+      "type": "free",
+      "expired": "2023-06-19T00:00:00.000Z",
+      "registered": "2023-05-17T09:49:00.000Z",
+      "limits_by_hour": 2500,
+      "limits_by_minute": 250,
+      "limits_by_month": 1000,
+      "limits_total": 997
+    },
+    "params": {
+      "iata_code": "RNS",
+      "lang": "en"
+    },
+    "version": 9,
+    "method": "airports",
+    "client": {
+      "ip": "2a01:cb08:9901:3d00:152:8435:149b:796",
+      "geo": {
+        "country_code": "FR",
+        "country": "France",
+        "continent": "Europe",
+        "lat": 46,
+        "lng": 2,
+        "timezone": "Europe/Paris"
+      },
+      "connection": {
+        "type": "cable/dsl",
+        "isp_code": 5511,
+        "isp_name": "France Telecom - Orange - Worldwide IP Backbone"
+      },
+      "device": {},
+      "agent": {},
+      "karma": {
+        "is_blocked": false,
+        "is_crawler": false,
+        "is_bot": false,
+        "is_friend": false,
+        "is_regular": true
+      }
+    }
+  },
+  "response": [
+    {
+      "name": "Rennes - Saint-Jacques",
+      "iata_code": "RNS",
+      "icao_code": "LFRN",
+      "lat": 48.069025,
+      "lng": -1.731943,
+      "country_code": "FR"
+    }
+  ],
+  "terms": "Unauthorized access is prohibited and punishable by law. \nReselling data 'As Is' without AirLabs.Co permission is strictly prohibited. \nFull terms on https://airlabs.co/. \nContact us info@airlabs.co"
+}

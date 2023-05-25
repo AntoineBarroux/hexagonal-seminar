@@ -2,7 +2,7 @@ package com.liksi.hexagonal.seminar.jpa.adapters;
 
 import com.liksi.hexagonal.seminar.jpa.mapper.DummyObjectMapper;
 import com.liksi.hexagonal.seminar.model.DummyObject;
-import com.liksi.hexagonal.seminar.ports.DummyObjectDAO;
+import com.liksi.hexagonal.seminar.ports.persistence.DummyObjectDAO;
 import jakarta.persistence.EntityNotFoundException;
 
 import java.util.UUID;
