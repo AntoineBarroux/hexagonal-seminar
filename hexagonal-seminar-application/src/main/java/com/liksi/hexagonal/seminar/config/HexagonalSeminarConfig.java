@@ -1,9 +1,9 @@
 package com.liksi.hexagonal.seminar.config;
 
-import com.liksi.hexagonal.seminar.adapters.DummyObjectJpaRepository;
-import com.liksi.hexagonal.seminar.adapters.DummyObjectRepository;
+import com.liksi.hexagonal.seminar.jpa.adapters.DummyObjectJpaRepository;
+import com.liksi.hexagonal.seminar.jpa.adapters.DummyObjectRepository;
 import com.liksi.hexagonal.seminar.business.DummyObjectCrudOperationsService;
-import com.liksi.hexagonal.seminar.mapper.DummyObjectMapper;
+import com.liksi.hexagonal.seminar.jpa.mapper.DummyObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

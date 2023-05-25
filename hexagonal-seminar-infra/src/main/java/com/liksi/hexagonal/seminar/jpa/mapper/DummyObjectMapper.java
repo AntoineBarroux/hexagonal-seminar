@@ -1,7 +1,7 @@
-package com.liksi.hexagonal.seminar.mapper;
+package com.liksi.hexagonal.seminar.jpa.mapper;
 
 import com.liksi.hexagonal.seminar.model.DummyObject;
-import com.liksi.hexagonal.seminar.model.DummyObjectEntity;
+import com.liksi.hexagonal.seminar.jpa.model.DummyObjectEntity;
 import org.mapstruct.Mapper;
 
 @Mapper

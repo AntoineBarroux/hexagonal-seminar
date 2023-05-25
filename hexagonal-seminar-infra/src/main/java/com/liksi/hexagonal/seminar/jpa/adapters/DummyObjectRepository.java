@@ -1,6 +1,6 @@
-package com.liksi.hexagonal.seminar.adapters;
+package com.liksi.hexagonal.seminar.jpa.adapters;
 
-import com.liksi.hexagonal.seminar.mapper.DummyObjectMapper;
+import com.liksi.hexagonal.seminar.jpa.mapper.DummyObjectMapper;
 import com.liksi.hexagonal.seminar.model.DummyObject;
 import com.liksi.hexagonal.seminar.ports.DummyObjectDAO;
 import jakarta.persistence.EntityNotFoundException;

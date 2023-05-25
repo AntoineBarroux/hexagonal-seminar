@@ -1,6 +1,6 @@
-package com.liksi.hexagonal.seminar.adapters;
+package com.liksi.hexagonal.seminar.jpa.adapters;
 
-import com.liksi.hexagonal.seminar.model.DummyObjectEntity;
+import com.liksi.hexagonal.seminar.jpa.model.DummyObjectEntity;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 

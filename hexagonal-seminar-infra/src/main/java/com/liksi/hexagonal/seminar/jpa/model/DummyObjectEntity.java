@@ -1,4 +1,4 @@
-package com.liksi.hexagonal.seminar.model;
+package com.liksi.hexagonal.seminar.jpa.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
