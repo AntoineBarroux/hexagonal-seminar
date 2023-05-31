@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.ProblemDetail;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
@@ -139,6 +140,20 @@ class SeminarControllerTest {
 
 			  verify(seminarService).deleteById(id);
 	   }
+
+	@Test
+	public void suggestSeminarNotFound() {
+		when(seminarFinderService.findSeminarDestinationFrom(anyString(), anyInt(), anyLong())).thenReturn(Optional.empty());
+
+		ProblemDetail problemDetail = webTestClient
+				.post().uri("/api/seminar/suggest")
+				.bodyValue(new SeminarConstraints("RNS", 1000L, 5))
+				.exchange()
+				.expectStatus().isNotFound()
+				.returnResult(ProblemDetail.class).getResponseBody().blockFirst();
+
+		assertThat(problemDetail.getTitle()).isEqualTo("No seminar was found according to your constraints");
+	}
 
 	   private SeminarResource getSeminarResource(UUID uuid, LocalDate now) {
 			  return new SeminarResource(

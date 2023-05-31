@@ -4,6 +4,7 @@ import com.liksi.hexagonal.seminar.business.SeminarFinderService;
 import com.liksi.hexagonal.seminar.business.SeminarService;
 import com.liksi.hexagonal.seminar.business.exception.InvalidRequestException;
 import com.liksi.hexagonal.seminar.business.exception.NotFoundException;
+import com.liksi.hexagonal.seminar.business.exception.SuggestNotFoundException;
 import com.liksi.hexagonal.seminar.mapper.SeminarResourceMapper;
 import com.liksi.hexagonal.seminar.resource.SeminarConstraints;
 import com.liksi.hexagonal.seminar.resource.SeminarResource;
@@ -59,7 +60,8 @@ public class SeminarController {
 	   @PostMapping("/suggest")
 	   public SeminarResource findBestRoute(@RequestBody SeminarConstraints seminarConstraints) {
 			  logger.info("Searching best match for {}", seminarConstraints);
-			  var suggestion = seminarFinderService.findSeminarDestinationFrom(seminarConstraints.departure(), seminarConstraints.attendees(), seminarConstraints.maxCarbonConsumption()).orElseThrow(() -> new NotFoundException("no suitable seminar"));
+			  var suggestion = seminarFinderService.findSeminarDestinationFrom(seminarConstraints.departure(), seminarConstraints.attendees(), seminarConstraints.maxCarbonConsumption())
+					  .orElseThrow(() -> new SuggestNotFoundException("no suitable seminar"));
 			  return seminarResourceMapper.toResource(suggestion);
 	   }
 
