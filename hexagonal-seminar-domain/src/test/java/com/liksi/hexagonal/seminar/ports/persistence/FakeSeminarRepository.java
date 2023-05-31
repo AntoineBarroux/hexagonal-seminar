@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public class FakeSeminarRepository implements SeminarRepository {
 
-		private List<Seminar> seminarList = new ArrayList<>();
+	   private List<Seminar> seminarList = new ArrayList<>();
 
 	   @Override
 	   public Optional<Seminar> findById(UUID id) {

@@ -17,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class SeminarServiceTest {
 
 	   private SeminarService seminarService = new SeminarService(new FakeSeminarRepository());
-
 	   @Test
 	   public void createASeminarAndFetchIt() {
 			  final UUID seminarId = UUID.randomUUID();

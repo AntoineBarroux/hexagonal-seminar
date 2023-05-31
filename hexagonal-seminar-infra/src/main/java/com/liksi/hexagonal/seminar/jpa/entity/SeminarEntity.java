@@ -1,6 +1,5 @@
 package com.liksi.hexagonal.seminar.jpa.entity;
 
-import com.liksi.hexagonal.seminar.model.Airport;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
