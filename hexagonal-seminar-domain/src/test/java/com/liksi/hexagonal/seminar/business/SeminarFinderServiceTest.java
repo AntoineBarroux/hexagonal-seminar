@@ -104,4 +104,66 @@ class SeminarFinderServiceTest {
 
         assertThat(bestMatch).isEmpty();
     }
+
+    @Test
+    void should_call_airports_only_once_per_iata_code() {
+        airlabsApiClient.addAirport("RNS", "FR");
+        airlabsApiClient.addAirport("AMS", "NL");
+        airlabsApiClient.addAirport("BUD", "HU");
+        airlabsApiClient.addAirport("JFK", "US");
+
+        airlabsApiClient.addRoute("RNS", "AMS", 90);
+        airlabsApiClient.addRoute("RNS", "AMS", 90);
+        airlabsApiClient.addRoute("RNS", "AMS", 90);
+        airlabsApiClient.addRoute("RNS", "AMS", 90);
+        airlabsApiClient.addRoute("RNS", "AMS", 90);
+        airlabsApiClient.addRoute("RNS", "AMS", 90);
+        airlabsApiClient.addRoute("RNS", "AMS", 90);
+        airlabsApiClient.addRoute("RNS", "AMS", 90);
+        airlabsApiClient.addRoute("RNS", "JFK", 360);
+        airlabsApiClient.addRoute("RNS", "JFK", 360);
+        airlabsApiClient.addRoute("RNS", "JFK", 360);
+        airlabsApiClient.addRoute("RNS", "JFK", 360);
+        airlabsApiClient.addRoute("RNS", "JFK", 360);
+        airlabsApiClient.addRoute("RNS", "BUD", 120);
+        airlabsApiClient.addRoute("RNS", "BUD", 120);
+
+        climatiqApiClient.addClimatiqEntry("RNS", "AMS", 20L);
+        climatiqApiClient.addClimatiqEntry("RNS", "JFK", 100L);
+        climatiqApiClient.addClimatiqEntry("RNS", "BUD", 45L);
+
+        seminarFinderService.findSeminarDestinationFrom("RNS", 20, 1000L);
+        assertThat(FakeAirlabsApiClient.Verify.getMultipleAirportsCall()).isEqualTo("AMS,JFK,BUD");
+    }
+
+    @Test
+    void should_call_climatiq_only_once_per_iata_code() {
+        airlabsApiClient.addAirport("RNS", "FR");
+        airlabsApiClient.addAirport("AMS", "NL");
+        airlabsApiClient.addAirport("BUD", "HU");
+        airlabsApiClient.addAirport("JFK", "US");
+
+        airlabsApiClient.addRoute("RNS", "AMS", 90);
+        airlabsApiClient.addRoute("RNS", "AMS", 90);
+        airlabsApiClient.addRoute("RNS", "AMS", 90);
+        airlabsApiClient.addRoute("RNS", "AMS", 90);
+        airlabsApiClient.addRoute("RNS", "AMS", 90);
+        airlabsApiClient.addRoute("RNS", "AMS", 90);
+        airlabsApiClient.addRoute("RNS", "AMS", 90);
+        airlabsApiClient.addRoute("RNS", "AMS", 90);
+        airlabsApiClient.addRoute("RNS", "JFK", 360);
+        airlabsApiClient.addRoute("RNS", "JFK", 360);
+        airlabsApiClient.addRoute("RNS", "JFK", 360);
+        airlabsApiClient.addRoute("RNS", "JFK", 360);
+        airlabsApiClient.addRoute("RNS", "JFK", 360);
+        airlabsApiClient.addRoute("RNS", "BUD", 120);
+        airlabsApiClient.addRoute("RNS", "BUD", 120);
+
+        climatiqApiClient.addClimatiqEntry("RNS", "AMS", 20L);
+        climatiqApiClient.addClimatiqEntry("RNS", "JFK", 100L);
+        climatiqApiClient.addClimatiqEntry("RNS", "BUD", 45L);
+
+        seminarFinderService.findSeminarDestinationFrom("RNS", 20, 1000L);
+        assertThat(FakeClimatiqApiClient.Verify.hasOnlyOneCallPerIataCode()).isTrue();
+    }
 }

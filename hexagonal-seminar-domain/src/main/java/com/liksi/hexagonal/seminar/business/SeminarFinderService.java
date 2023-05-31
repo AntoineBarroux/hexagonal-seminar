@@ -9,6 +9,9 @@ import com.liksi.hexagonal.seminar.ports.persistence.SeminarRepository;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class SeminarFinderService {
@@ -30,12 +33,17 @@ public class SeminarFinderService {
         final var departureAirport = airlabsApiClient.getAirportByIataCode(departureIataCode);
 
         final var routes = airlabsApiClient.getRoutesFromDepartureByIataCode(departureIataCode);
-        final var airports = airlabsApiClient.getAirportsByIataCodes(routes.stream().map(Route::arrIata).collect(Collectors.toList()));
+        final var airports = airlabsApiClient.getAirportsByIataCodes(routes.stream()
+                .map(Route::arrIata)
+                .distinct()
+                .collect(Collectors.toList())
+        );
         final var existingSeminars = seminarRepository.findAllByStartDateAfter(LocalDate.now().minusYears(5));
 
         final var filteredRoutes = routes.stream()
                 .filter(route -> doesNotConcernDepartureCountry(getAirport(airports, route.arrIata()), departureAirport))
                 .filter(route -> doesNotConcernCountryFromAnExistingSeminar(getAirport(airports, route.arrIata()), existingSeminars))
+                .filter(distinctByKey(Route::arrIata))
                 .sorted(Comparator.comparing(Route::duration))
                 .toList();
 
@@ -69,5 +77,11 @@ public class SeminarFinderService {
                 .filter(airport -> airport.iataCode().equals(iataCode))
                 .findFirst()
                 .orElseThrow();
+    }
+
+    public static <T> Predicate<T> distinctByKey(
+            Function<? super T, ?> keyExtractor) {
+        Map<Object, Boolean> seen = new ConcurrentHashMap<>();
+        return t -> seen.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
     }
 }

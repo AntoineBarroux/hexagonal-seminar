@@ -29,6 +29,7 @@ public class FakeAirlabsApiClient implements AirlabsApiClient {
 
     @Override
     public List<Airport> getAirportsByIataCodes(final List<String> iataCodes) {
+        Verify.multipleAirportsCall = String.join(",", iataCodes);
         return airports.stream()
                 .filter(airport -> iataCodes.contains(airport.iataCode()))
                 .toList();
@@ -39,5 +40,13 @@ public class FakeAirlabsApiClient implements AirlabsApiClient {
         return routes.stream()
                 .filter(route -> route.depIata().equals(departureIataCode))
                 .toList();
+    }
+
+    public static class Verify {
+        static String multipleAirportsCall;
+
+        public static String getMultipleAirportsCall() {
+            return multipleAirportsCall;
+        }
     }
 }
