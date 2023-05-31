@@ -4,6 +4,7 @@ import com.liksi.hexagonal.seminar.http.adapters.AirportHttpClient;
 import com.liksi.hexagonal.seminar.http.adapters.RouteHttpClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.support.WebClientAdapter;
 import org.springframework.web.service.invoker.HttpServiceProxyFactory;
@@ -12,11 +13,18 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @Configuration
 public class AirlabsApiConfig {
+
+    final int size = 16 * 1024 * 1024;
+    final ExchangeStrategies strategies = ExchangeStrategies.builder()
+            .codecs(codecs -> codecs.defaultCodecs().maxInMemorySize(size))
+            .build();
+
     @Bean
     WebClient airlabsWebClient(AirlabsApiProperties airlabsApiProperties) {
         DefaultUriBuilderFactory defaultUriBuilderFactory = new DefaultUriBuilderFactory(uriComponentsBuilder(airlabsApiProperties));
         return WebClient.builder()
                 .uriBuilderFactory(defaultUriBuilderFactory)
+                .exchangeStrategies(strategies)
                 .build();
     }
 
