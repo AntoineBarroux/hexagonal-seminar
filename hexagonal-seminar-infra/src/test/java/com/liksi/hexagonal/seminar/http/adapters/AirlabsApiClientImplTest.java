@@ -2,14 +2,18 @@ package com.liksi.hexagonal.seminar.http.adapters;
 
 import com.liksi.hexagonal.seminar.http.exception.AirportNotFoundException;
 import com.liksi.hexagonal.seminar.http.mapper.AirportMapperImpl;
+import com.liksi.hexagonal.seminar.http.mapper.RouteMapperImpl;
 import com.liksi.hexagonal.seminar.http.model.AirportDTO;
 import com.liksi.hexagonal.seminar.http.model.AirportResponseDTO;
+import com.liksi.hexagonal.seminar.http.model.RouteDTO;
+import com.liksi.hexagonal.seminar.http.model.RouteResponseDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoSettings;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,14 +27,20 @@ class AirlabsApiClientImplTest {
     @Spy
     private AirportMapperImpl airportMapper;
 
+    @Spy
+    private RouteMapperImpl routeMapper;
+
     @Mock
     private AirportHttpClient airportHttpClient;
+
+    @Mock
+    private RouteHttpClient routeHttpClient;
 
     private AirlabsApiClientImpl airlabsApiClient;
 
     @BeforeEach
     void setup() {
-        airlabsApiClient = new AirlabsApiClientImpl(airportHttpClient, airportMapper);
+        airlabsApiClient = new AirlabsApiClientImpl(airportHttpClient, routeHttpClient, airportMapper, routeMapper);
     }
 
     @Test
@@ -52,5 +62,28 @@ class AirlabsApiClientImplTest {
         assertThatThrownBy(() -> airlabsApiClient.getAirportByIataCode("RNS"))
                 .isInstanceOf(AirportNotFoundException.class)
                 .hasMessage("Airport RNS not found");
+    }
+
+    @Test
+    void should_correctly_get_routes_from_departure_by_iata_code() {
+        final var route = new RouteDTO("1030", "RNS", "09:25", "08:25", "AMS", List.of("2"), "11:00", "10:00", 95);
+        final var response = new RouteResponseDTO(List.of(route));
+        when(routeHttpClient.getRoutesFromDepartureByIataCode(anyString())).thenReturn(response);
+
+        final var result = airlabsApiClient.getRoutesFromDepartureByIataCode("RNS");
+        assertThat(result).isNotNull();
+        assertThat(result).hasSize(1);
+        assertThat(result.get(0).depIata()).isEqualTo("RNS");
+        assertThat(result.get(0).arrIata()).isEqualTo("AMS");
+    }
+
+    @Test
+    void should_correctly_get_routes_from_departure_by_iata_code_empty_list() {
+        final var response = new RouteResponseDTO(Collections.emptyList());
+        when(routeHttpClient.getRoutesFromDepartureByIataCode(anyString())).thenReturn(response);
+
+        final var result = airlabsApiClient.getRoutesFromDepartureByIataCode("RNS");
+        assertThat(result).isNotNull();
+        assertThat(result).hasSize(0);
     }
 }

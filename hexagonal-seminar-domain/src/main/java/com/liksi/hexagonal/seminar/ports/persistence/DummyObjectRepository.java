@@ -4,6 +4,6 @@ import com.liksi.hexagonal.seminar.model.DummyObject;
 
 import java.util.UUID;
 
-public interface DummyObjectDAO {
+public interface DummyObjectRepository {
     DummyObject findById(UUID id);
 }

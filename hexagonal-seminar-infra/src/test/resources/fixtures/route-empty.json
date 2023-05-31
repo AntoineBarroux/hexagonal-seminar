@@ -1,0 +1,54 @@
+{
+  "request": {
+    "lang": "en",
+    "currency": "EUR",
+    "time": 1,
+    "id": "g8w511t3r6w",
+    "server": "l",
+    "host": "airlabs.co",
+    "pid": 4094765,
+    "key": {
+      "id": 24429,
+      "api_key": "e703b7dd-7e25-48a0-81a0-816ccd0a1879",
+      "type": "free",
+      "expired": "2023-06-19T00:00:00.000Z",
+      "registered": "2023-05-17T09:49:00.000Z",
+      "limits_by_hour": 2500,
+      "limits_by_minute": 250,
+      "limits_by_month": 1000,
+      "limits_total": 998
+    },
+    "params": {
+      "dep_iata": "EMPTY",
+      "lang": "en"
+    },
+    "version": 9,
+    "method": "routes",
+    "client": {
+      "ip": "2a01:cb08:8e17:d100:a53d:54d3:62b3:81b8",
+      "geo": {
+        "country_code": "FR",
+        "country": "France",
+        "continent": "Europe",
+        "lat": 46,
+        "lng": 2,
+        "timezone": "Europe/Paris"
+      },
+      "connection": {
+        "type": "cable/dsl",
+        "isp_code": 5511,
+        "isp_name": "France Telecom - Orange - Worldwide IP Backbone"
+      },
+      "device": {},
+      "agent": {},
+      "karma": {
+        "is_blocked": false,
+        "is_crawler": false,
+        "is_bot": false,
+        "is_friend": false,
+        "is_regular": true
+      }
+    }
+  },
+  "response": []
+}

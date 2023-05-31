@@ -2,17 +2,17 @@ package com.liksi.hexagonal.seminar.jpa.adapters;
 
 import com.liksi.hexagonal.seminar.jpa.mapper.DummyObjectMapper;
 import com.liksi.hexagonal.seminar.model.DummyObject;
-import com.liksi.hexagonal.seminar.ports.persistence.DummyObjectDAO;
+import com.liksi.hexagonal.seminar.ports.persistence.DummyObjectRepository;
 import jakarta.persistence.EntityNotFoundException;
 
 import java.util.UUID;
 
-public class DummyObjectRepository implements DummyObjectDAO {
+public class DummyObjectRepositoryImpl implements DummyObjectRepository {
 
     private final DummyObjectJpaRepository dummyObjectJpaRepository;
     private final DummyObjectMapper dummyObjectMapper;
 
-    public DummyObjectRepository(final DummyObjectJpaRepository dummyObjectJpaRepository,
+    public DummyObjectRepositoryImpl(final DummyObjectJpaRepository dummyObjectJpaRepository,
             final DummyObjectMapper dummyObjectMapper) {
         this.dummyObjectJpaRepository = dummyObjectJpaRepository;
         this.dummyObjectMapper = dummyObjectMapper;

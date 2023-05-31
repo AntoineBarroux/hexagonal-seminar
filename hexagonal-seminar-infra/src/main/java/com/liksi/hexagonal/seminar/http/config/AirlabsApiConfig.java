@@ -1,6 +1,7 @@
 package com.liksi.hexagonal.seminar.http.config;
 
 import com.liksi.hexagonal.seminar.http.adapters.AirportHttpClient;
+import com.liksi.hexagonal.seminar.http.adapters.RouteHttpClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -25,6 +26,14 @@ public class AirlabsApiConfig {
                 HttpServiceProxyFactory.builder(WebClientAdapter.forClient(airlabsWebClient))
                         .build();
         return httpServiceProxyFactory.createClient(AirportHttpClient.class);
+    }
+
+    @Bean
+    RouteHttpClient routeHttpClient(WebClient airlabsWebClient) {
+        HttpServiceProxyFactory httpServiceProxyFactory =
+                HttpServiceProxyFactory.builder(WebClientAdapter.forClient(airlabsWebClient))
+                        .build();
+        return httpServiceProxyFactory.createClient(RouteHttpClient.class);
     }
 
     private UriComponentsBuilder uriComponentsBuilder(final AirlabsApiProperties airlabsApiProperties) {

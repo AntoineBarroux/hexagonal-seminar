@@ -1,15 +1,15 @@
 package com.liksi.hexagonal.seminar.business;
 
 import com.liksi.hexagonal.seminar.model.DummyObject;
-import com.liksi.hexagonal.seminar.ports.persistence.DummyObjectDAO;
+import com.liksi.hexagonal.seminar.ports.persistence.DummyObjectRepository;
 
 import java.util.UUID;
 
 public class DummyObjectCrudOperationsService {
 
-    private final DummyObjectDAO dummyObjectDAO;
+    private final DummyObjectRepository dummyObjectDAO;
 
-    public DummyObjectCrudOperationsService(final DummyObjectDAO dummyObjectDAO) {
+    public DummyObjectCrudOperationsService(final DummyObjectRepository dummyObjectDAO) {
         this.dummyObjectDAO = dummyObjectDAO;
     }
 

@@ -1,0 +1,734 @@
+{
+  "request": {
+    "lang": "en",
+    "currency": "EUR",
+    "time": 1,
+    "id": "g8w511t3r6w",
+    "server": "l",
+    "host": "airlabs.co",
+    "pid": 4094765,
+    "key": {
+      "id": 24429,
+      "api_key": "e703b7dd-7e25-48a0-81a0-816ccd0a1879",
+      "type": "free",
+      "expired": "2023-06-19T00:00:00.000Z",
+      "registered": "2023-05-17T09:49:00.000Z",
+      "limits_by_hour": 2500,
+      "limits_by_minute": 250,
+      "limits_by_month": 1000,
+      "limits_total": 998
+    },
+    "params": {
+      "dep_iata": "RNS",
+      "lang": "en"
+    },
+    "version": 9,
+    "method": "routes",
+    "client": {
+      "ip": "2a01:cb08:8e17:d100:a53d:54d3:62b3:81b8",
+      "geo": {
+        "country_code": "FR",
+        "country": "France",
+        "continent": "Europe",
+        "lat": 46,
+        "lng": 2,
+        "timezone": "Europe/Paris"
+      },
+      "connection": {
+        "type": "cable/dsl",
+        "isp_code": 5511,
+        "isp_name": "France Telecom - Orange - Worldwide IP Backbone"
+      },
+      "device": {},
+      "agent": {},
+      "karma": {
+        "is_blocked": false,
+        "is_crawler": false,
+        "is_bot": false,
+        "is_friend": false,
+        "is_regular": true
+      }
+    }
+  },
+  "response": [
+    {
+      "airline_iata": "A5",
+      "airline_icao": "HOP",
+      "flight_number": "1030",
+      "flight_iata": "A51030",
+      "flight_icao": "HOP1030",
+      "cs_airline_iata": null,
+      "cs_flight_iata": null,
+      "cs_flight_number": null,
+      "dep_iata": "RNS",
+      "dep_icao": "LFRN",
+      "dep_terminals": null,
+      "dep_time": "09:25",
+      "dep_time_utc": "08:25",
+      "arr_iata": "AMS",
+      "arr_icao": "EHAM",
+      "arr_terminals": [
+        "2"
+      ],
+      "arr_time": "11:00",
+      "arr_time_utc": "10:00",
+      "duration": 95,
+      "aircraft_icao": null,
+      "counter": 2,
+      "updated": "2023-03-12T09:53:46.000Z",
+      "days": [
+        "sun"
+      ]
+    },
+    {
+      "airline_iata": "A5",
+      "airline_icao": "HOP",
+      "flight_number": "1030",
+      "flight_iata": "A51030",
+      "flight_icao": "HOP1030",
+      "cs_airline_iata": null,
+      "cs_flight_iata": null,
+      "cs_flight_number": null,
+      "dep_iata": "RNS",
+      "dep_icao": "LFRN",
+      "dep_terminals": null,
+      "dep_time": "10:20",
+      "dep_time_utc": "09:20",
+      "arr_iata": "AMS",
+      "arr_icao": "EHAM",
+      "arr_terminals": [
+        "2"
+      ],
+      "arr_time": "11:55",
+      "arr_time_utc": "10:55",
+      "duration": 95,
+      "aircraft_icao": null,
+      "counter": 6,
+      "updated": "2023-02-15T23:06:59.000Z",
+      "days": [
+        "fri",
+        "mon",
+        "sat",
+        "thu",
+        "tue",
+        "wed"
+      ]
+    },
+    {
+      "airline_iata": "AF",
+      "airline_icao": "AFR",
+      "flight_number": "1030",
+      "flight_iata": "AF1030",
+      "flight_icao": "AFR1030",
+      "cs_airline_iata": "A5",
+      "cs_flight_iata": "A51030",
+      "cs_flight_number": "1030",
+      "dep_iata": "RNS",
+      "dep_icao": "LFRN",
+      "dep_terminals": null,
+      "dep_time": "09:25",
+      "dep_time_utc": "08:25",
+      "arr_iata": "AMS",
+      "arr_icao": "EHAM",
+      "arr_terminals": [
+        "2"
+      ],
+      "arr_time": "11:00",
+      "arr_time_utc": "10:00",
+      "duration": 95,
+      "aircraft_icao": null,
+      "counter": 24,
+      "updated": "2023-03-19T10:35:52.000Z",
+      "days": [
+        "sun"
+      ]
+    },
+    {
+      "airline_iata": "AF",
+      "airline_icao": "AFR",
+      "flight_number": "1030",
+      "flight_iata": "AF1030",
+      "flight_icao": "AFR1030",
+      "cs_airline_iata": "A5",
+      "cs_flight_iata": "A51030",
+      "cs_flight_number": "1030",
+      "dep_iata": "RNS",
+      "dep_icao": "LFRN",
+      "dep_terminals": null,
+      "dep_time": "10:20",
+      "dep_time_utc": "09:20",
+      "arr_iata": "AMS",
+      "arr_icao": "EHAM",
+      "arr_terminals": [
+        "2"
+      ],
+      "arr_time": "11:55",
+      "arr_time_utc": "10:55",
+      "duration": 95,
+      "aircraft_icao": null,
+      "counter": 91,
+      "updated": "2023-03-20T11:23:54.000Z",
+      "days": [
+        "fri",
+        "mon",
+        "sat",
+        "thu",
+        "tue",
+        "wed"
+      ]
+    },
+    {
+      "airline_iata": "AF",
+      "airline_icao": "AFR",
+      "flight_number": "8420",
+      "flight_iata": "AF8420",
+      "flight_icao": "AFR8420",
+      "cs_airline_iata": "WA",
+      "cs_flight_iata": "WA1256",
+      "cs_flight_number": "1256",
+      "dep_iata": "RNS",
+      "dep_icao": "LFRN",
+      "dep_terminals": null,
+      "dep_time": "16:30",
+      "dep_time_utc": "14:30",
+      "arr_iata": "AMS",
+      "arr_icao": "EHAM",
+      "arr_terminals": [
+        "2"
+      ],
+      "arr_time": "18:10",
+      "arr_time_utc": "16:10",
+      "duration": 100,
+      "aircraft_icao": null,
+      "counter": 19,
+      "updated": "2023-05-02T15:12:03.000Z",
+      "days": [
+        "fri",
+        "mon",
+        "sat",
+        "thu",
+        "tue",
+        "wed"
+      ]
+    },
+    {
+      "airline_iata": "AF",
+      "airline_icao": "AFR",
+      "flight_number": "8420",
+      "flight_iata": "AF8420",
+      "flight_icao": "AFR8420",
+      "cs_airline_iata": "WA",
+      "cs_flight_iata": "WA1256",
+      "cs_flight_number": "1256",
+      "dep_iata": "RNS",
+      "dep_icao": "LFRN",
+      "dep_terminals": null,
+      "dep_time": "18:30",
+      "dep_time_utc": "16:30",
+      "arr_iata": "AMS",
+      "arr_icao": "EHAM",
+      "arr_terminals": [
+        "3",
+        "2"
+      ],
+      "arr_time": "20:10",
+      "arr_time_utc": "18:10",
+      "duration": 100,
+      "aircraft_icao": null,
+      "counter": 5,
+      "updated": "2023-05-14T17:44:03.000Z",
+      "days": [
+        "sun"
+      ]
+    },
+    {
+      "airline_iata": "KL",
+      "airline_icao": "KLM",
+      "flight_number": "1256",
+      "flight_iata": "KL1256",
+      "flight_icao": "KLM1256",
+      "cs_airline_iata": "WA",
+      "cs_flight_iata": "WA1256",
+      "cs_flight_number": "1256",
+      "dep_iata": "RNS",
+      "dep_icao": "LFRN",
+      "dep_terminals": null,
+      "dep_time": "16:30",
+      "dep_time_utc": "14:30",
+      "arr_iata": "AMS",
+      "arr_icao": "EHAM",
+      "arr_terminals": [
+        "2"
+      ],
+      "arr_time": "18:10",
+      "arr_time_utc": "16:10",
+      "duration": 100,
+      "aircraft_icao": null,
+      "counter": 251,
+      "updated": "2023-05-16T17:44:26.000Z",
+      "days": [
+        "fri",
+        "mon",
+        "sat",
+        "thu",
+        "tue",
+        "wed"
+      ]
+    },
+    {
+      "airline_iata": "KL",
+      "airline_icao": "KLM",
+      "flight_number": "1256",
+      "flight_iata": "KL1256",
+      "flight_icao": "KLM1256",
+      "cs_airline_iata": "WA",
+      "cs_flight_iata": "WA1256",
+      "cs_flight_number": "1256",
+      "dep_iata": "RNS",
+      "dep_icao": "LFRN",
+      "dep_terminals": null,
+      "dep_time": "18:30",
+      "dep_time_utc": "16:30",
+      "arr_iata": "AMS",
+      "arr_icao": "EHAM",
+      "arr_terminals": [
+        "3",
+        "2"
+      ],
+      "arr_time": "20:10",
+      "arr_time_utc": "18:10",
+      "duration": 100,
+      "aircraft_icao": null,
+      "counter": 11,
+      "updated": "2023-05-14T19:27:15.000Z",
+      "days": [
+        "sun"
+      ]
+    },
+    {
+      "airline_iata": "KL",
+      "airline_icao": "KLM",
+      "flight_number": "2030",
+      "flight_iata": "KL2030",
+      "flight_icao": "KLM2030",
+      "cs_airline_iata": "A5",
+      "cs_flight_iata": "A51030",
+      "cs_flight_number": "1030",
+      "dep_iata": "RNS",
+      "dep_icao": "LFRN",
+      "dep_terminals": null,
+      "dep_time": "09:25",
+      "dep_time_utc": "08:25",
+      "arr_iata": "AMS",
+      "arr_icao": "EHAM",
+      "arr_terminals": [
+        "2"
+      ],
+      "arr_time": "11:00",
+      "arr_time_utc": "10:00",
+      "duration": 95,
+      "aircraft_icao": null,
+      "counter": 2,
+      "updated": "2023-03-12T09:53:46.000Z",
+      "days": [
+        "sun"
+      ]
+    },
+    {
+      "airline_iata": "KL",
+      "airline_icao": "KLM",
+      "flight_number": "2030",
+      "flight_iata": "KL2030",
+      "flight_icao": "KLM2030",
+      "cs_airline_iata": "A5",
+      "cs_flight_iata": "A51030",
+      "cs_flight_number": "1030",
+      "dep_iata": "RNS",
+      "dep_icao": "LFRN",
+      "dep_terminals": null,
+      "dep_time": "10:20",
+      "dep_time_utc": "09:20",
+      "arr_iata": "AMS",
+      "arr_icao": "EHAM",
+      "arr_terminals": [
+        "2"
+      ],
+      "arr_time": "11:55",
+      "arr_time_utc": "10:55",
+      "duration": 95,
+      "aircraft_icao": null,
+      "counter": 6,
+      "updated": "2023-02-15T23:06:59.000Z",
+      "days": [
+        "fri",
+        "mon",
+        "sat",
+        "thu",
+        "tue",
+        "wed"
+      ]
+    },
+    {
+      "airline_iata": "WA",
+      "airline_icao": "KLC",
+      "flight_number": "1256",
+      "flight_iata": "WA1256",
+      "flight_icao": "KLC1256",
+      "cs_airline_iata": null,
+      "cs_flight_iata": null,
+      "cs_flight_number": null,
+      "dep_iata": "RNS",
+      "dep_icao": "LFRN",
+      "dep_terminals": null,
+      "dep_time": "16:30",
+      "dep_time_utc": "14:30",
+      "arr_iata": "AMS",
+      "arr_icao": "EHAM",
+      "arr_terminals": [
+        "2"
+      ],
+      "arr_time": "18:10",
+      "arr_time_utc": "16:10",
+      "duration": 100,
+      "aircraft_icao": null,
+      "counter": 19,
+      "updated": "2023-05-02T15:12:03.000Z",
+      "days": [
+        "fri",
+        "mon",
+        "sat",
+        "thu",
+        "tue",
+        "wed"
+      ]
+    },
+    {
+      "airline_iata": "WA",
+      "airline_icao": "KLC",
+      "flight_number": "1256",
+      "flight_iata": "WA1256",
+      "flight_icao": "KLC1256",
+      "cs_airline_iata": null,
+      "cs_flight_iata": null,
+      "cs_flight_number": null,
+      "dep_iata": "RNS",
+      "dep_icao": "LFRN",
+      "dep_terminals": null,
+      "dep_time": "18:30",
+      "dep_time_utc": "16:30",
+      "arr_iata": "AMS",
+      "arr_icao": "EHAM",
+      "arr_terminals": [
+        "3",
+        "2"
+      ],
+      "arr_time": "20:10",
+      "arr_time_utc": "18:10",
+      "duration": 100,
+      "aircraft_icao": null,
+      "counter": 5,
+      "updated": "2023-05-14T17:44:03.000Z",
+      "days": [
+        "sun"
+      ]
+    },
+    {
+      "airline_iata": "A5",
+      "airline_icao": "HOP",
+      "flight_number": "7533",
+      "flight_iata": "A57533",
+      "flight_icao": "HOP7533",
+      "cs_airline_iata": null,
+      "cs_flight_iata": null,
+      "cs_flight_number": null,
+      "dep_iata": "RNS",
+      "dep_icao": "LFRN",
+      "dep_terminals": null,
+      "dep_time": "08:05",
+      "dep_time_utc": "06:05",
+      "arr_iata": "CDG",
+      "arr_icao": "LFPG",
+      "arr_terminals": [
+        "2G"
+      ],
+      "arr_time": "09:10",
+      "arr_time_utc": "07:10",
+      "duration": 65,
+      "aircraft_icao": null,
+      "counter": 3,
+      "updated": "2023-04-17T05:49:14.000Z",
+      "days": [
+        "mon"
+      ]
+    },
+    {
+      "airline_iata": "A5",
+      "airline_icao": "HOP",
+      "flight_number": "7639",
+      "flight_iata": "A57639",
+      "flight_icao": "HOP7639",
+      "cs_airline_iata": null,
+      "cs_flight_iata": null,
+      "cs_flight_number": null,
+      "dep_iata": "RNS",
+      "dep_icao": "LFRN",
+      "dep_terminals": null,
+      "dep_time": "06:40",
+      "dep_time_utc": "05:40",
+      "arr_iata": "CDG",
+      "arr_icao": "LFPG",
+      "arr_terminals": [
+        "2G"
+      ],
+      "arr_time": "07:45",
+      "arr_time_utc": "06:45",
+      "duration": 65,
+      "aircraft_icao": null,
+      "counter": 5,
+      "updated": "2023-02-15T19:02:06.000Z",
+      "days": [
+        "mon",
+        "sun",
+        "thu",
+        "tue",
+        "wed"
+      ]
+    },
+    {
+      "airline_iata": "A5",
+      "airline_icao": "HOP",
+      "flight_number": "7653",
+      "flight_iata": "A57653",
+      "flight_icao": "HOP7653",
+      "cs_airline_iata": null,
+      "cs_flight_iata": null,
+      "cs_flight_number": null,
+      "dep_iata": "RNS",
+      "dep_icao": "LFRN",
+      "dep_terminals": null,
+      "dep_time": "06:55",
+      "dep_time_utc": "05:55",
+      "arr_iata": "CDG",
+      "arr_icao": "LFPG",
+      "arr_terminals": [
+        "2G"
+      ],
+      "arr_time": "08:00",
+      "arr_time_utc": "07:00",
+      "duration": 65,
+      "aircraft_icao": null,
+      "counter": 2,
+      "updated": "2023-02-10T19:06:51.000Z",
+      "days": [
+        "sat"
+      ]
+    },
+    {
+      "airline_iata": "A5",
+      "airline_icao": "HOP",
+      "flight_number": "7679",
+      "flight_iata": "A57679",
+      "flight_icao": "HOP7679",
+      "cs_airline_iata": null,
+      "cs_flight_iata": null,
+      "cs_flight_number": null,
+      "dep_iata": "RNS",
+      "dep_icao": "LFRN",
+      "dep_terminals": null,
+      "dep_time": "10:20",
+      "dep_time_utc": "09:20",
+      "arr_iata": "CDG",
+      "arr_icao": "LFPG",
+      "arr_terminals": [
+        "2G"
+      ],
+      "arr_time": "11:25",
+      "arr_time_utc": "10:25",
+      "duration": 65,
+      "aircraft_icao": null,
+      "counter": 4,
+      "updated": "2023-03-15T23:47:20.000Z",
+      "days": [
+        "thu",
+        "tue"
+      ]
+    },
+    {
+      "airline_iata": "A5",
+      "airline_icao": "HOP",
+      "flight_number": "7679",
+      "flight_iata": "A57679",
+      "flight_icao": "HOP7679",
+      "cs_airline_iata": null,
+      "cs_flight_iata": null,
+      "cs_flight_number": null,
+      "dep_iata": "RNS",
+      "dep_icao": "LFRN",
+      "dep_terminals": null,
+      "dep_time": "13:35",
+      "dep_time_utc": "12:35",
+      "arr_iata": "CDG",
+      "arr_icao": "LFPG",
+      "arr_terminals": [
+        "2G"
+      ],
+      "arr_time": "14:40",
+      "arr_time_utc": "13:40",
+      "duration": 65,
+      "aircraft_icao": null,
+      "counter": 4,
+      "updated": "2023-02-16T02:05:58.000Z",
+      "days": [
+        "mon",
+        "sun",
+        "wed"
+      ]
+    },
+    {
+      "airline_iata": "A5",
+      "airline_icao": "HOP",
+      "flight_number": "7679",
+      "flight_iata": "A57679",
+      "flight_icao": "HOP7679",
+      "cs_airline_iata": null,
+      "cs_flight_iata": null,
+      "cs_flight_number": null,
+      "dep_iata": "RNS",
+      "dep_icao": "LFRN",
+      "dep_terminals": null,
+      "dep_time": "13:50",
+      "dep_time_utc": "12:50",
+      "arr_iata": "CDG",
+      "arr_icao": "LFPG",
+      "arr_terminals": [
+        "2G"
+      ],
+      "arr_time": "14:55",
+      "arr_time_utc": "13:55",
+      "duration": 65,
+      "aircraft_icao": null,
+      "counter": 2,
+      "updated": "2023-02-11T02:07:35.000Z",
+      "days": [
+        "fri",
+        "sat"
+      ]
+    },
+    {
+      "airline_iata": "A5",
+      "airline_icao": "HOP",
+      "flight_number": "9465",
+      "flight_iata": "A59465",
+      "flight_icao": "HOP9465",
+      "cs_airline_iata": null,
+      "cs_flight_iata": null,
+      "cs_flight_number": null,
+      "dep_iata": "RNS",
+      "dep_icao": "LFRN",
+      "dep_terminals": null,
+      "dep_time": "07:05",
+      "dep_time_utc": "05:05",
+      "arr_iata": "CDG",
+      "arr_icao": "LFPG",
+      "arr_terminals": [
+        "2G"
+      ],
+      "arr_time": "08:15",
+      "arr_time_utc": "06:15",
+      "duration": 70,
+      "aircraft_icao": null,
+      "counter": 4,
+      "updated": "2023-04-15T04:48:51.000Z",
+      "days": [
+        "sat"
+      ]
+    },
+    {
+      "airline_iata": "A5",
+      "airline_icao": "HOP",
+      "flight_number": "9465",
+      "flight_iata": "A59465",
+      "flight_icao": "HOP9465",
+      "cs_airline_iata": null,
+      "cs_flight_iata": null,
+      "cs_flight_number": null,
+      "dep_iata": "RNS",
+      "dep_icao": "LFRN",
+      "dep_terminals": null,
+      "dep_time": "07:20",
+      "dep_time_utc": "05:20",
+      "arr_iata": "CDG",
+      "arr_icao": "LFPG",
+      "arr_terminals": [
+        "2G"
+      ],
+      "arr_time": "08:30",
+      "arr_time_utc": "06:30",
+      "duration": 70,
+      "aircraft_icao": null,
+      "counter": 5,
+      "updated": "2023-05-12T05:03:01.000Z",
+      "days": [
+        "fri"
+      ]
+    },
+    {
+      "airline_iata": "A5",
+      "airline_icao": "HOP",
+      "flight_number": "9465",
+      "flight_iata": "A59465",
+      "flight_icao": "HOP9465",
+      "cs_airline_iata": null,
+      "cs_flight_iata": null,
+      "cs_flight_number": null,
+      "dep_iata": "RNS",
+      "dep_icao": "LFRN",
+      "dep_terminals": null,
+      "dep_time": "13:35",
+      "dep_time_utc": "11:35",
+      "arr_iata": "CDG",
+      "arr_icao": "LFPG",
+      "arr_terminals": [
+        "2G"
+      ],
+      "arr_time": "14:45",
+      "arr_time_utc": "12:45",
+      "duration": 70,
+      "aircraft_icao": null,
+      "counter": 5,
+      "updated": "2023-05-07T11:29:07.000Z",
+      "days": [
+        "sun"
+      ]
+    },
+    {
+      "airline_iata": "A5",
+      "airline_icao": "HOP",
+      "flight_number": "9465",
+      "flight_iata": "A59465",
+      "flight_icao": "HOP9465",
+      "cs_airline_iata": null,
+      "cs_flight_iata": null,
+      "cs_flight_number": null,
+      "dep_iata": "RNS",
+      "dep_icao": "LFRN",
+      "dep_terminals": null,
+      "dep_time": "13:55",
+      "dep_time_utc": "11:55",
+      "arr_iata": "CDG",
+      "arr_icao": "LFPG",
+      "arr_terminals": [
+        "2G"
+      ],
+      "arr_time": "15:05",
+      "arr_time_utc": "13:05",
+      "duration": 70,
+      "aircraft_icao": null,
+      "counter": 2,
+      "updated": "2023-04-10T12:00:45.000Z",
+      "days": [
+        "mon"
+      ]
+    }
+  ]
+}
