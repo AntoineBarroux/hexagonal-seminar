@@ -1,12 +1,12 @@
 package com.liksi.hexagonal.seminar.config;
 
-import com.liksi.hexagonal.seminar.business.DummyObjectCrudOperationsService;
+import com.liksi.hexagonal.seminar.business.SeminarService;
 import com.liksi.hexagonal.seminar.http.adapters.*;
 import com.liksi.hexagonal.seminar.http.mapper.AirportMapper;
 import com.liksi.hexagonal.seminar.http.mapper.RouteMapper;
-import com.liksi.hexagonal.seminar.jpa.adapters.DummyObjectJpaRepository;
-import com.liksi.hexagonal.seminar.jpa.adapters.DummyObjectRepositoryImpl;
-import com.liksi.hexagonal.seminar.jpa.mapper.DummyObjectMapper;
+import com.liksi.hexagonal.seminar.jpa.adapters.SeminarJpaRepository;
+import com.liksi.hexagonal.seminar.jpa.adapters.SeminarRepositoryImpl;
+import com.liksi.hexagonal.seminar.jpa.mapper.SeminarMapper;
 import com.liksi.hexagonal.seminar.ports.http.AirlabsApiClient;
 import com.liksi.hexagonal.seminar.ports.http.ClimatiqApiClient;
 import org.springframework.context.annotation.Bean;
@@ -16,18 +16,18 @@ import org.springframework.context.annotation.Configuration;
 public class HexagonalSeminarConfig {
 
     @Bean
-    public DummyObjectRepositoryImpl dummyObjectRepository(
-            final DummyObjectJpaRepository dummyObjectJpaRepository,
-            final DummyObjectMapper dummyObjectMapper
+    public SeminarRepositoryImpl seminarRepository(
+            final SeminarJpaRepository seminarJpaRepository,
+            final SeminarMapper seminarMapper
     ) {
-        return new DummyObjectRepositoryImpl(dummyObjectJpaRepository, dummyObjectMapper);
+        return new SeminarRepositoryImpl(seminarJpaRepository, seminarMapper);
     }
 
     @Bean
-    public DummyObjectCrudOperationsService dummyObjectCrudOperationsService(
-            final DummyObjectRepositoryImpl dummyObjectRepository
+    public SeminarService seminarService(
+            final SeminarRepositoryImpl seminarRepository
     ) {
-        return new DummyObjectCrudOperationsService(dummyObjectRepository);
+        return new SeminarService(seminarRepository);
     }
 
     @Bean
