@@ -1,6 +1,5 @@
 package com.liksi.hexagonal.seminar.ports.persistence;
 
-import com.liksi.hexagonal.seminar.model.DummyObject;
 import com.liksi.hexagonal.seminar.model.Seminar;
 
 import java.util.Optional;

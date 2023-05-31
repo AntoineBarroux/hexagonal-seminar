@@ -1,7 +1,6 @@
 package com.liksi.hexagonal.seminar.model;
 
 import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.UUID;
 
 public record Seminar(
@@ -10,6 +9,6 @@ public record Seminar(
 		Airport arrival,
 		LocalDate startDate,
 		int attendees,
-		int carbon
+		long carbon
 ) {
 }

@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface AirlabsApiClient {
     Airport getAirportByIataCode(String iataCode);
+    List<Airport> getAirportsByIataCodes(List<String> iataCodes);
     List<Route> getRoutesFromDepartureByIataCode(String departureIataCode);
 }

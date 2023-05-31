@@ -44,6 +44,14 @@ public class AirlabsApiClientImpl implements AirlabsApiClient {
     }
 
     @Override
+    public List<Airport> getAirportsByIataCodes(final List<String> iataCodes) {
+        LOG.info("Getting airports by iata codes {}", iataCodes);
+        return airportHttpClient.getAirportByIataCode(String.join(",", iataCodes)).response().stream()
+                .map(airportMapper::toModel)
+                .toList();
+    }
+
+    @Override
     public List<Route> getRoutesFromDepartureByIataCode(final String departureIataCode) {
         LOG.info("Getting routes from departure iata code {}", departureIataCode);
         return routeHttpClient.getRoutesFromDepartureByIataCode(departureIataCode).response().stream()
