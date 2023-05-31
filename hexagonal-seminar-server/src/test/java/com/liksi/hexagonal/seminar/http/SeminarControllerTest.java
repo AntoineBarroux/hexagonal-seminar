@@ -113,7 +113,7 @@ class SeminarControllerTest {
 			  UUID id = UUID.fromString("dc280ecf-46e1-4094-9774-730493390BAD");
 			  LocalDate now = LocalDate.now();
 			  Seminar seminar = getSeminar(id, now);
-			  when(seminarFinderService.findSeminarDestinationFrom(anyString(), anyInt(), anyLong())).thenReturn(seminar);
+			  when(seminarFinderService.findSeminarDestinationFrom(anyString(), anyInt(), anyLong())).thenReturn(Optional.of(seminar));
 
 			  SeminarResource seminarResource =webTestClient
 					  .post().uri("/api/seminar/suggest")

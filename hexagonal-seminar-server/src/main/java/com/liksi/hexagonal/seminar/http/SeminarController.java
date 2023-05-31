@@ -58,7 +58,8 @@ public class SeminarController {
 	   @PostMapping("/suggest")
 	   public SeminarResource findBestRoute(@RequestBody SeminarConstraints seminarConstraints) {
 			  logger.info("Searching best match for {}", seminarConstraints);
-			  return seminarResourceMapper.toResource(seminarFinderService.findSeminarDestinationFrom(seminarConstraints.departure(), seminarConstraints.attendees(), seminarConstraints.maxCarbonConsumption()));
+			  var suggestion = seminarFinderService.findSeminarDestinationFrom(seminarConstraints.departure(), seminarConstraints.attendees(), seminarConstraints.maxCarbonConsumption()).orElseThrow(() -> new NotFoundException("no suitable seminar"));
+			  return seminarResourceMapper.toResource(suggestion);
 	   }
 
 }
