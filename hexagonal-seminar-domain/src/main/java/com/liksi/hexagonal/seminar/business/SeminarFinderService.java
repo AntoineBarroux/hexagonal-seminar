@@ -5,45 +5,66 @@ import com.liksi.hexagonal.seminar.model.Route;
 import com.liksi.hexagonal.seminar.model.Seminar;
 import com.liksi.hexagonal.seminar.ports.http.AirlabsApiClient;
 import com.liksi.hexagonal.seminar.ports.http.ClimatiqApiClient;
+import com.liksi.hexagonal.seminar.ports.persistence.SeminarRepository;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class SeminarFinderService {
 
     private final AirlabsApiClient airlabsApiClient;
     private final ClimatiqApiClient climatiqApiClient;
+    private final SeminarRepository seminarRepository;
 
 
-    // TODO : sortir le stockage temporaire dans une autre classe dédiée pour découplage ?
-    private static final Map<Route, Long> consommation = new HashMap<>();
-
-    public SeminarFinderService(final AirlabsApiClient airlabsApiClient, final ClimatiqApiClient climatiqApiClient) {
+    public SeminarFinderService(final AirlabsApiClient airlabsApiClient,
+            final ClimatiqApiClient climatiqApiClient,
+            final SeminarRepository seminarRepository) {
         this.airlabsApiClient = airlabsApiClient;
         this.climatiqApiClient = climatiqApiClient;
+        this.seminarRepository = seminarRepository;
     }
 
     public Seminar findSeminarDestinationFrom(String departureIataCode, int passengersCount, Long maxConsommation) {
         final var departureAirport = airlabsApiClient.getAirportByIataCode(departureIataCode);
 
-        // TODO : ne garder que les routes qui concernent un pays où l'on n'est pas allé
-        // TODO : appel avec plusieurs aéroports : rajouter une route getAirportsByIataCodes(List<String> iataCodes)
-        // TODO : pour chaque route, y associer un country code, filtrer pour dégager ceux égaux au country code de départ ou ceux ou on est déja allés
-        final var associatedRoutes = airlabsApiClient.getRoutesFromDepartureByIataCode(departureIataCode).stream()
+        final var routes = airlabsApiClient.getRoutesFromDepartureByIataCode(departureIataCode);
+        final var airports = airlabsApiClient.getAirportsByIataCodes(routes.stream().map(Route::arrIata).collect(Collectors.toList()));
+        final var existingSeminars = seminarRepository.findAllByStartDateAfter(LocalDate.now().minusYears(5));
+
+        final var filteredRoutes = routes.stream()
+                .filter(route -> doesNotConcernDepartureCountry(getAirport(airports, route.arrIata()), departureAirport))
+                .filter(route -> doesNotConcernCountryFromAnExistingSeminar(getAirport(airports, route.arrIata()), existingSeminars))
                 .sorted(Comparator.comparing(Route::duration))
                 .toList();
 
-        final var dichotomy = new DichotomyHelper(climatiqApiClient);
-        dichotomy.process(associatedRoutes, passengersCount, maxConsommation);
-        final var bestResult = dichotomy.getBestResult();
-        final var arrivalAirport = airlabsApiClient.getAirportByIataCode(bestResult.getKey().arrIata());
+        final var dichotomy = new DichotomyHelper(climatiqApiClient, new MaxConsommationStrategy());
+        final var bestResult = dichotomy.getBestMatch(filteredRoutes, passengersCount, maxConsommation);
+        final var arrivalAirport = getAirport(airports, bestResult.route().arrIata());
         return new Seminar(
                 UUID.randomUUID(),
                 new Airport(departureAirport.iataCode(), departureAirport.countryCode()),
                 new Airport(arrivalAirport.iataCode(), arrivalAirport.countryCode()),
                 LocalDate.now(),
                 passengersCount,
-                bestResult.getValue()
+                bestResult.consommation()
         );
+    }
+
+    private static boolean doesNotConcernDepartureCountry(final Airport arrivalAirport, final Airport departureAirport) {
+        return !arrivalAirport.countryCode().equals(departureAirport.countryCode());
+    }
+
+    private static boolean doesNotConcernCountryFromAnExistingSeminar(final Airport airport, final List<Seminar> existingSeminars) {
+        return existingSeminars.stream()
+                .noneMatch(seminar -> airport.countryCode().equals(seminar.arrival().countryCode()));
+    }
+
+    private static Airport getAirport(final List<Airport> airports, final String iataCode) {
+        return airports.stream()
+                .filter(airport -> airport.iataCode().equals(iataCode))
+                .findFirst()
+                .orElseThrow();
     }
 }
