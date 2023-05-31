@@ -4,12 +4,15 @@ import com.liksi.hexagonal.seminar.model.Airport;
 import com.liksi.hexagonal.seminar.model.Route;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class FakeAirlabsApiClient implements AirlabsApiClient {
 
     private final List<Airport> airports = new ArrayList<>();
     private final List<Route> routes = new ArrayList<>();
+
+    private List<String> multipleAirportsCall = new ArrayList<>();
 
     public void addAirport(String iataCode, String countryCode) {
         airports.add(new Airport(iataCode, countryCode));
@@ -29,7 +32,7 @@ public class FakeAirlabsApiClient implements AirlabsApiClient {
 
     @Override
     public List<Airport> getAirportsByIataCodes(final List<String> iataCodes) {
-        Verify.multipleAirportsCall = String.join(",", iataCodes);
+        multipleAirportsCall.addAll(iataCodes);
         return airports.stream()
                 .filter(airport -> iataCodes.contains(airport.iataCode()))
                 .toList();
@@ -42,11 +45,9 @@ public class FakeAirlabsApiClient implements AirlabsApiClient {
                 .toList();
     }
 
-    public static class Verify {
-        static String multipleAirportsCall;
-
-        public static String getMultipleAirportsCall() {
-            return multipleAirportsCall;
+    public void checkUniqueCallPerIataCode() {
+        if (new HashSet<>(multipleAirportsCall).size() != multipleAirportsCall.size()) {
+            throw new IllegalStateException("Multiple calls to getAirportsByIataCodes with the same iataCode : " + String.join(",", multipleAirportsCall));
         }
     }
 }
