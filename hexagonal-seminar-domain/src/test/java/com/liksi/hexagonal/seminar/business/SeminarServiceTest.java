@@ -12,7 +12,6 @@ import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class SeminarServiceTest {
 
@@ -52,6 +51,21 @@ class SeminarServiceTest {
 			  assertThatThrownBy(() -> seminarService.create(seminar))
 					  .hasMessage("Seminar " + seminarId + " already exists")
 					  .isInstanceOf(InvalidRequestException.class);
+	   }
+
+	   @Test
+	   public void listAll() {
+			  final UUID seminarId = UUID.randomUUID();
+			  Seminar seminar = new Seminar(
+					  seminarId,
+					  new Airport("CDG", "FR"),
+					  new Airport("RNS", "FR"),
+					  LocalDate.now(),
+					  50,
+					  1000
+			  );
+			  seminarService.create(seminar);
+			  assertThat(seminarService.listAll()).hasSize(1);
 	   }
 
 }

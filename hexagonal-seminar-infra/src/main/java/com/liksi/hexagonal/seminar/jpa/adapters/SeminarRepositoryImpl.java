@@ -5,6 +5,8 @@ import com.liksi.hexagonal.seminar.model.Seminar;
 import com.liksi.hexagonal.seminar.ports.persistence.SeminarRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -29,5 +31,14 @@ public class SeminarRepositoryImpl implements SeminarRepository {
 	   @Override
 	   public Seminar create(Seminar seminar) {
 			  return seminarMapper.toModel(seminarJpaRepository.save(seminarMapper.toEntity(seminar)));
+	   }
+
+	   @Override
+	   public List<Seminar> listAll() {
+			  List<Seminar> result = new ArrayList<>();
+			  seminarJpaRepository.findAll().forEach(
+					  seminarEntity -> result.add(seminarMapper.toModel(seminarEntity))
+			  );
+			  return result;
 	   }
 }

@@ -12,4 +12,5 @@ import java.util.UUID;
 public interface SeminarJpaRepository extends PagingAndSortingRepository<SeminarEntity, UUID>, CrudRepository<SeminarEntity, UUID> {
 
     Optional<SeminarEntity> findById(UUID id);
+
 }

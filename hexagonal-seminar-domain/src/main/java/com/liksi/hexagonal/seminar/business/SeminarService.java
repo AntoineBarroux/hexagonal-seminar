@@ -4,6 +4,7 @@ import com.liksi.hexagonal.seminar.business.exception.InvalidRequestException;
 import com.liksi.hexagonal.seminar.model.Seminar;
 import com.liksi.hexagonal.seminar.ports.persistence.SeminarRepository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -24,6 +25,10 @@ public class SeminarService {
 
 	   public Optional<Seminar> getById(UUID id) {
 			  return seminarRepository.findById(id);
+	   }
+
+	   public List<Seminar> listAll() {
+			  return seminarRepository.listAll();
 	   }
 
 }

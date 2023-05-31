@@ -23,4 +23,9 @@ public class FakeSeminarRepository implements SeminarRepository {
 			  seminarList.add(seminar);
 			  return seminar;
 	   }
+
+	   @Override
+	   public List<Seminar> listAll() {
+			  return seminarList;
+	   }
 }

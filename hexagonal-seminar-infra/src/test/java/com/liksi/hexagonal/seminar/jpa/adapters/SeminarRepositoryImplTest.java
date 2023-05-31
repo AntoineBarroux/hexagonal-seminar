@@ -35,4 +35,19 @@ class SeminarRepositoryImplTest extends AbstractIntegrationTest {
 			  assertThat(found.get()).isEqualTo(created);
 	   }
 
+	   @Test
+	   public void listAll() {
+			  final UUID seminarId = UUID.randomUUID();
+			  Seminar seminar = new Seminar(
+					  seminarId,
+					  new Airport("CDG", "FR"),
+					  new Airport("RNS", "FR"),
+					  LocalDate.now(),
+					  50,
+					  1000
+			  );
+			  seminarRepository.create(seminar);
+			  assertThat(seminarRepository.listAll()).hasSize(1);
+	   }
+
 }

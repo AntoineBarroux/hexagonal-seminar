@@ -10,14 +10,13 @@ import com.liksi.hexagonal.seminar.resource.SeminarResource;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 import java.net.URI;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -25,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 @ContextConfiguration(classes = {IntegrationTestConfiguration.class})
-@WebFluxTest(controllers = { SeminarController.class, ControllerExceptionHandler.class})
+@WebFluxTest(controllers = {SeminarController.class, ControllerExceptionHandler.class})
 class SeminarControllerTest {
 	   @Autowired
 	   private WebTestClient webTestClient;
@@ -89,6 +88,21 @@ class SeminarControllerTest {
 
 	   }
 
+	   @Test
+	   public void listSeminars() {
+			  UUID id = UUID.fromString("dc280ecf-46e1-4094-9774-730493390BAD");
+			  LocalDate now = LocalDate.now();
+			  Seminar seminar = getSeminar(id, now);
+			  when(seminarService.listAll()).thenReturn(Collections.singletonList(seminar));
+
+			  webTestClient
+					  .get().uri("/api/seminar")
+					  .exchange()
+					  .expectStatus().isOk()
+					  .expectBodyList(SeminarResource.class)
+					  .hasSize(1);
+	   }
+
 	   private SeminarResource getSeminarResource(UUID uuid, LocalDate now) {
 			  return new SeminarResource(
 					  uuid,
@@ -99,6 +113,7 @@ class SeminarControllerTest {
 					  1000
 			  );
 	   }
+
 	   private Seminar getSeminar(UUID uuid, LocalDate now) {
 			  return new Seminar(
 					  uuid,

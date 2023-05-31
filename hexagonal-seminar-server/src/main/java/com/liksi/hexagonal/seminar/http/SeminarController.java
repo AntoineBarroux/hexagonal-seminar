@@ -9,7 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/seminar")
@@ -38,6 +40,14 @@ public class SeminarController {
 			  }
 			  logger.info("Putting seminar {}", id);
 			  return seminarResourceMapper.toResource(seminarService.create(seminarResourceMapper.toModel(seminarResource)));
+	   }
+
+	   @GetMapping
+	   public List<SeminarResource> listSeminars() {
+			  logger.info("Listing seminars");
+			  return seminarService.listAll().stream()
+					  .map(seminarResourceMapper::toResource)
+					  .collect(Collectors.toList());
 	   }
 
 }
