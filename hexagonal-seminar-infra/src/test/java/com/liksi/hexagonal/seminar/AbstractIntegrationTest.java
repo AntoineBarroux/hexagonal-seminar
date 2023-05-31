@@ -25,4 +25,15 @@ public abstract class AbstractIntegrationTest {
             throw new RuntimeException(e);
         }
     }
+
+    protected MockResponse createMockResponse400FromFixture(final String fileName) {
+        try {
+            return new MockResponse()
+                    .setResponseCode(400)
+                    .setBody(Files.readString(Paths.get(getClass().getClassLoader().getResource("fixtures/" + fileName).toURI())))
+                    .setHeader("Content-Type", "application/json");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

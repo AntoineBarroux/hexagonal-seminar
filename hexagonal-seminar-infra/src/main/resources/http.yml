@@ -2,3 +2,8 @@ airlabs:
   api:
     url: https://airlabs.co/api/v9/
     key: e703b7dd-7e25-48a0-81a0-816ccd0a1879
+
+climatiq:
+  api:
+    url: https://beta3.api.climatiq.io
+    key: "MR0DG84C81M0SZKKNDMNS21MKRQG"

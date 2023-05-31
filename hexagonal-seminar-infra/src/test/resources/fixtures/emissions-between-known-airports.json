@@ -1,0 +1,33 @@
+{
+  "co2e": 3405.5530749600002,
+  "co2e_unit": "kg",
+  "legs": [
+    {
+      "co2e": 3405.5530749600002,
+      "co2e_unit": "kg",
+      "co2e_calculation_method": "ar5",
+      "co2e_calculation_origin": "source",
+      "emission_factor": {
+        "name": "Short-haul flight - (<1000km) with RF effect",
+        "activity_id": "passenger_flight-route_type_na-aircraft_type_na-distance_short_haul_lt_1000km-class_na-rf_included",
+        "uuid": "93afc504-8065-414f-a0d1-a0627b97507b",
+        "id": "passenger_flight-route_type_na-aircraft_type_na-distance_short_haul_lt_1000km-class_na-rf_included",
+        "access_type": "public",
+        "source": "ADEME",
+        "source_dataset": "Base Carbone",
+        "year": "2021",
+        "region": "FR",
+        "category": "Air Travel",
+        "lca_activity": "fuel_upstream-fuel_combustion-fugitive_emissions",
+        "data_quality_flags": []
+      },
+      "constituent_gases": {
+        "co2e_total": 3405.5530749600002,
+        "co2e_other": null,
+        "co2": null,
+        "ch4": null,
+        "n2o": null
+      }
+    }
+  ]
+}

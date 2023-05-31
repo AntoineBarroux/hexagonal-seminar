@@ -7,3 +7,8 @@ airlabs:
   api:
     url: http://localhost:61000
     key: XXXXXX
+
+climatiq:
+  api:
+    url: http://localhost:62000
+    key: XXXXXX
