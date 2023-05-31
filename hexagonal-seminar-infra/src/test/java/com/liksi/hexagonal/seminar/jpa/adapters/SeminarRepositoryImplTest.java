@@ -3,6 +3,7 @@ package com.liksi.hexagonal.seminar.jpa.adapters;
 import com.liksi.hexagonal.seminar.AbstractIntegrationTest;
 import com.liksi.hexagonal.seminar.model.Airport;
 import com.liksi.hexagonal.seminar.model.Seminar;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,6 +17,14 @@ class SeminarRepositoryImplTest extends AbstractIntegrationTest {
 
     @Autowired
     private SeminarRepositoryImpl seminarRepository;
+
+    @Autowired
+    private SeminarJpaRepository seminarJpaRepository;
+
+    @BeforeEach
+    void setup() {
+        seminarJpaRepository.deleteAll();
+    }
 
     @Test
     public void insertAndFetchSeminar() {
