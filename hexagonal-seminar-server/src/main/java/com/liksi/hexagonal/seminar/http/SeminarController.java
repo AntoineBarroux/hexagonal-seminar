@@ -9,6 +9,7 @@ import com.liksi.hexagonal.seminar.resource.SeminarConstraints;
 import com.liksi.hexagonal.seminar.resource.SeminarResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -62,4 +63,10 @@ public class SeminarController {
 			  return seminarResourceMapper.toResource(suggestion);
 	   }
 
+	   @DeleteMapping("/{id}")
+	   @ResponseStatus(HttpStatus.NO_CONTENT)
+	   public void deleteSeminar(@PathVariable UUID id) {
+			  logger.info("Deleting seminar {}", id);
+			  seminarService.deleteById(id);
+	   }
 }

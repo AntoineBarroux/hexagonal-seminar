@@ -43,4 +43,9 @@ public class SeminarRepositoryImpl implements SeminarRepository {
         seminarJpaRepository.findAll().forEach(seminarEntity -> result.add(seminarMapper.toModel(seminarEntity)));
         return result;
     }
+
+    @Override
+    public void deleteById(UUID id) {
+        seminarJpaRepository.deleteById(id);
+    }
 }

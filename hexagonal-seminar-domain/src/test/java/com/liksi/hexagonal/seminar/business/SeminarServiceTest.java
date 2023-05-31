@@ -68,4 +68,21 @@ class SeminarServiceTest {
 			  assertThat(seminarService.listAll()).hasSize(1);
 	   }
 
+	   @Test
+	   public void delete() {
+			  final UUID seminarId = UUID.randomUUID();
+			  Seminar seminar = new Seminar(
+					  seminarId,
+					  new Airport("CDG", "FR"),
+					  new Airport("RNS", "FR"),
+					  LocalDate.now(),
+					  50,
+					  1000
+			  );
+			  seminarService.create(seminar);
+			  assertThat(seminarService.listAll()).hasSize(1);
+			  seminarService.deleteById(seminarId);
+			  assertThat(seminarService.listAll()).hasSize(0);
+
+	   }
 }

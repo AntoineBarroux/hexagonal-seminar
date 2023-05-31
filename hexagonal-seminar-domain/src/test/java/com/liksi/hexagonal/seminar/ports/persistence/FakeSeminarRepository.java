@@ -34,4 +34,12 @@ public class FakeSeminarRepository implements SeminarRepository {
 	   public List<Seminar> listAll() {
 			  return seminarList;
 	   }
+
+	   @Override
+	   public void deleteById(UUID id) {
+			  Optional<Seminar> seminar = this.findById(id);
+			  if (seminar.isPresent()) {
+					 seminarList.remove(seminar.get());
+			  }
+	   }
 }

@@ -17,7 +17,7 @@ public class SeminarService {
 	   }
 
 	   public Seminar create(Seminar seminar) {
-			  if(seminarRepository.findById(seminar.id()).isPresent()) {
+			  if (seminarRepository.findById(seminar.id()).isPresent()) {
 					 throw new InvalidRequestException("Seminar " + seminar.id() + " already exists");
 			  }
 			  return seminarRepository.create(seminar);
@@ -31,4 +31,7 @@ public class SeminarService {
 			  return seminarRepository.listAll();
 	   }
 
+	   public void deleteById(UUID id) {
+			  seminarRepository.deleteById(id);
+	   }
 }

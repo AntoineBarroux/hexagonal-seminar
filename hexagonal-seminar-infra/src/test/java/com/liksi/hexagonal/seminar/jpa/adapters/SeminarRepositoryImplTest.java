@@ -68,4 +68,28 @@ class SeminarRepositoryImplTest extends AbstractIntegrationTest {
 			  assertThat(seminarRepository.listAll()).hasSize(1);
 	   }
 
+	   @Test
+	   public void delete() {
+			  final UUID seminarId = UUID.randomUUID();
+			  Seminar seminar = new Seminar(
+					  seminarId,
+					  new Airport("CDG", "FR"),
+					  new Airport("RNS", "FR"),
+					  LocalDate.now(),
+					  50,
+					  1000
+			  );
+			  seminarRepository.create(seminar);
+			  assertThat(seminarRepository.listAll()).hasSize(1);
+			  seminarRepository.deleteById(seminarId);
+			  assertThat(seminarRepository.listAll()).hasSize(0);
+	   }
+
+	   @Test
+	   public void delete_a_missing_entry_is_ok() {
+			  final UUID seminarId = UUID.randomUUID();
+			  seminarRepository.deleteById(seminarId);
+	   }
+
+
 }

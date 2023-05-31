@@ -24,7 +24,7 @@ import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ContextConfiguration(classes = {IntegrationTestConfiguration.class})
 @WebFluxTest(controllers = {SeminarController.class, ControllerExceptionHandler.class})
@@ -123,6 +123,21 @@ class SeminarControllerTest {
 					  .returnResult(SeminarResource.class).getResponseBody().blockFirst();
 
 			  assertThat(seminarResource.id()).isEqualTo(id);
+	   }
+
+	   @Test
+	   public void deleteSeminar() {
+			  UUID id = UUID.fromString("dc280ecf-46e1-4094-9774-730493390");
+			  LocalDate now = LocalDate.now();
+			  Seminar seminar = getSeminar(id, now);
+			  doNothing().when(seminarService).deleteById(any());
+
+			 webTestClient
+					  .delete().uri("/api/seminar/dc280ecf-46e1-4094-9774-730493390")
+					  .exchange()
+					  .expectStatus().isNoContent();
+
+			  verify(seminarService).deleteById(id);
 	   }
 
 	   private SeminarResource getSeminarResource(UUID uuid, LocalDate now) {
