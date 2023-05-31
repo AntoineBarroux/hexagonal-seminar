@@ -35,7 +35,7 @@ class SeminarFinderServiceTest {
         climatiqApiClient.addClimatiqEntry("RNS", "JFK", 100L);
         climatiqApiClient.addClimatiqEntry("RNS", "BUD", 45L);
 
-        final var bestMatch = seminarFinderService.findSeminarDestinationFrom("RNS", 20, 1000L);
+        final var bestMatch = seminarFinderService.findSeminarDestinationFrom("RNS", 20, 1000L).orElseThrow();
 
         assertThat(bestMatch.arrival().iataCode()).isEqualTo("BUD");
         assertThat(bestMatch.carbon()).isEqualTo(900);
@@ -56,7 +56,7 @@ class SeminarFinderServiceTest {
         climatiqApiClient.addClimatiqEntry("RNS", "JFK", 100L);
         climatiqApiClient.addClimatiqEntry("RNS", "BUD", 45L);
 
-        final var bestMatch = seminarFinderService.findSeminarDestinationFrom("RNS", 20, 1000L);
+        final var bestMatch = seminarFinderService.findSeminarDestinationFrom("RNS", 20, 1000L).orElseThrow();
 
         assertThat(bestMatch.arrival().iataCode()).isEqualTo("AMS");
         assertThat(bestMatch.carbon()).isEqualTo(400);
@@ -79,9 +79,29 @@ class SeminarFinderServiceTest {
 
         seminarRepository.create(new Seminar(UUID.randomUUID(), new Airport("RNS", "FR"), new Airport("BUD", "HU"), LocalDate.now().minusYears(1), 20, 900));
 
-        final var bestMatch = seminarFinderService.findSeminarDestinationFrom("RNS", 20, 1000L);
+        final var bestMatch = seminarFinderService.findSeminarDestinationFrom("RNS", 20, 1000L).orElseThrow();
 
         assertThat(bestMatch.arrival().iataCode()).isEqualTo("AMS");
         assertThat(bestMatch.carbon()).isEqualTo(400);
+    }
+
+    @Test
+    void should_correctly_manage_no_suitable() {
+        airlabsApiClient.addAirport("RNS", "FR");
+        airlabsApiClient.addAirport("AMS", "NL");
+        airlabsApiClient.addAirport("BUD", "HU");
+        airlabsApiClient.addAirport("JFK", "US");
+
+        airlabsApiClient.addRoute("RNS", "AMS", 90);
+        airlabsApiClient.addRoute("RNS", "JFK", 360);
+        airlabsApiClient.addRoute("RNS", "BUD", 120);
+
+        climatiqApiClient.addClimatiqEntry("RNS", "AMS", 20L);
+        climatiqApiClient.addClimatiqEntry("RNS", "JFK", 100L);
+        climatiqApiClient.addClimatiqEntry("RNS", "BUD", 45L);
+
+        final var bestMatch = seminarFinderService.findSeminarDestinationFrom("RNS", 20, 1L);
+
+        assertThat(bestMatch).isEmpty();
     }
 }

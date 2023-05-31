@@ -26,7 +26,7 @@ public class SeminarFinderService {
         this.seminarRepository = seminarRepository;
     }
 
-    public Seminar findSeminarDestinationFrom(String departureIataCode, int passengersCount, Long maxConsommation) {
+    public Optional<Seminar> findSeminarDestinationFrom(String departureIataCode, int passengersCount, Long maxConsommation) {
         final var departureAirport = airlabsApiClient.getAirportByIataCode(departureIataCode);
 
         final var routes = airlabsApiClient.getRoutesFromDepartureByIataCode(departureIataCode);
@@ -41,15 +41,18 @@ public class SeminarFinderService {
 
         final var dichotomy = new DichotomyHelper(climatiqApiClient, new MaxConsommationStrategy());
         final var bestResult = dichotomy.getBestMatch(filteredRoutes, passengersCount, maxConsommation);
-        final var arrivalAirport = getAirport(airports, bestResult.route().arrIata());
-        return new Seminar(
-                UUID.randomUUID(),
-                new Airport(departureAirport.iataCode(), departureAirport.countryCode()),
-                new Airport(arrivalAirport.iataCode(), arrivalAirport.countryCode()),
-                LocalDate.now(),
-                passengersCount,
-                bestResult.consommation()
-        );
+        Seminar result = null;
+        if (bestResult.isPresent()) {
+            final var arrivalAirport = getAirport(airports, bestResult.get().route().arrIata());
+            result = new Seminar(
+                    UUID.randomUUID(),
+                    new Airport(departureAirport.iataCode(), departureAirport.countryCode()),
+                    new Airport(arrivalAirport.iataCode(), arrivalAirport.countryCode()),
+                    LocalDate.now(),
+                    passengersCount,
+                    bestResult.get().consommation());
+        }
+        return Optional.ofNullable(result);
     }
 
     private static boolean doesNotConcernDepartureCountry(final Airport arrivalAirport, final Airport departureAirport) {

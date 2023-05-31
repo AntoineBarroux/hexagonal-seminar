@@ -5,6 +5,7 @@ import com.liksi.hexagonal.seminar.ports.http.ClimatiqApiClient;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class DichotomyHelper {
 
@@ -18,7 +19,7 @@ public class DichotomyHelper {
         this.consommation = new ArrayList<>();
     }
 
-    public RouteConsommation getBestMatch(List<Route> routes, int passengersCount, Long maxConsommation) {
+    public Optional<RouteConsommation> getBestMatch(List<Route> routes, int passengersCount, Long maxConsommation) {
         process(routes, passengersCount, maxConsommation);
         return bestResultStrategy.getBestResult(consommation);
     }
