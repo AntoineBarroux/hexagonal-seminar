@@ -1,10 +1,10 @@
 package com.liksi.hexagonal.seminar.business;
 
-import com.liksi.hexagonal.seminar.business.exception.InvalidRequestException;
 import com.liksi.hexagonal.seminar.model.Route;
 import com.liksi.hexagonal.seminar.ports.http.ClimatiqApiClient;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DichotomyHelper {
 
@@ -25,14 +25,14 @@ public class DichotomyHelper {
 
     private void process(List<Route> routes, int passengersCount, Long maxConsommation) {
         if (routes.isEmpty()) {
-            throw new InvalidRequestException("No routes found for this departure airport");
+            return;
         }
-        final var index = (routes.size() / 2) - 1;
+        final var index = routes.size() / 2;
         final var route = routes.get(index);
         final var routeConsommation = climatiqApiClient.getEmissionsBetweenAirports(route.depIata(), route.arrIata(), passengersCount);
         if (routeConsommation < maxConsommation) {
             consommation.add(new RouteConsommation(route, routeConsommation));
-            process(routes.subList(index, routes.size()), passengersCount, maxConsommation);
+            process(routes.subList(index + 1, routes.size()), passengersCount, maxConsommation);
         } else {
             process(routes.subList(0, index), passengersCount, maxConsommation);
         }

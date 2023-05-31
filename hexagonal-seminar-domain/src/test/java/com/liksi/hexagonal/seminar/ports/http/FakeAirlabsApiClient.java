@@ -8,15 +8,15 @@ import java.util.List;
 
 public class FakeAirlabsApiClient implements AirlabsApiClient {
 
-    private List<Airport> airports = new ArrayList<>();
-    private List<Route> routes = new ArrayList<>();
+    private final List<Airport> airports = new ArrayList<>();
+    private final List<Route> routes = new ArrayList<>();
 
-    public void addAirport(Airport airport) {
-        airports.add(airport);
+    public void addAirport(String iataCode, String countryCode) {
+        airports.add(new Airport(iataCode, countryCode));
     }
 
-    public void addRoute(Route route) {
-        routes.add(route);
+    public void addRoute(String departureIata, String arrivalIata, int duration) {
+        routes.add(new Route(null, departureIata, null, null, arrivalIata, null, null, null, duration));
     }
 
     @Override
