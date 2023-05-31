@@ -1,9 +1,11 @@
 package com.liksi.hexagonal.seminar.http;
 
+import com.liksi.hexagonal.seminar.business.SeminarFinderService;
 import com.liksi.hexagonal.seminar.business.SeminarService;
 import com.liksi.hexagonal.seminar.business.exception.InvalidRequestException;
 import com.liksi.hexagonal.seminar.business.exception.NotFoundException;
 import com.liksi.hexagonal.seminar.mapper.SeminarResourceMapper;
+import com.liksi.hexagonal.seminar.resource.SeminarConstraints;
 import com.liksi.hexagonal.seminar.resource.SeminarResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,10 +23,13 @@ public class SeminarController {
 
 	   private final SeminarService seminarService;
 
+	   private final SeminarFinderService seminarFinderService;
 
-	   public SeminarController(final SeminarResourceMapper seminarResourceMapper, final SeminarService seminarService) {
+
+	   public SeminarController(final SeminarResourceMapper seminarResourceMapper, final SeminarService seminarService, SeminarFinderService seminarFinderService) {
 			  this.seminarResourceMapper = seminarResourceMapper;
 			  this.seminarService = seminarService;
+			  this.seminarFinderService = seminarFinderService;
 	   }
 
 	   @GetMapping("/{id}")
@@ -48,6 +53,12 @@ public class SeminarController {
 			  return seminarService.listAll().stream()
 					  .map(seminarResourceMapper::toResource)
 					  .collect(Collectors.toList());
+	   }
+
+	   @PostMapping("/suggest")
+	   public SeminarResource findBestRoute(@RequestBody SeminarConstraints seminarConstraints) {
+			  logger.info("Searching best match for {}", seminarConstraints);
+			  return seminarResourceMapper.toResource(seminarFinderService.findSeminarDestinationFrom(seminarConstraints.departure(), seminarConstraints.attendees(), seminarConstraints.maxCarbonConsumption()));
 	   }
 
 }

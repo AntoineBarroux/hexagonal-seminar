@@ -1,11 +1,13 @@
 package com.liksi.hexagonal.seminar.http;
 
 import com.liksi.hexagonal.seminar.IntegrationTestConfiguration;
+import com.liksi.hexagonal.seminar.business.SeminarFinderService;
 import com.liksi.hexagonal.seminar.business.SeminarService;
 import com.liksi.hexagonal.seminar.mapper.SeminarResourceMapper;
 import com.liksi.hexagonal.seminar.model.Airport;
 import com.liksi.hexagonal.seminar.model.Seminar;
 import com.liksi.hexagonal.seminar.resource.AirportResource;
+import com.liksi.hexagonal.seminar.resource.SeminarConstraints;
 import com.liksi.hexagonal.seminar.resource.SeminarResource;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
 @ContextConfiguration(classes = {IntegrationTestConfiguration.class})
@@ -32,9 +35,11 @@ class SeminarControllerTest {
 	   private SeminarResourceMapper seminarResourceMapper;
 	   @MockBean
 	   private SeminarService seminarService;
+	   @MockBean
+	   private SeminarFinderService seminarFinderService;
 
 	   @Test
-	   public void fetchObjectNotFound() throws Exception {
+	   public void fetchObjectNotFound() {
 			  webTestClient
 					  .get()
 					  .exchange()
@@ -101,6 +106,23 @@ class SeminarControllerTest {
 					  .expectStatus().isOk()
 					  .expectBodyList(SeminarResource.class)
 					  .hasSize(1);
+	   }
+
+	   @Test
+	   public void suggestSeminar() {
+			  UUID id = UUID.fromString("dc280ecf-46e1-4094-9774-730493390BAD");
+			  LocalDate now = LocalDate.now();
+			  Seminar seminar = getSeminar(id, now);
+			  when(seminarFinderService.findSeminarDestinationFrom(anyString(), anyInt(), anyLong())).thenReturn(seminar);
+
+			  SeminarResource seminarResource =webTestClient
+					  .post().uri("/api/seminar/suggest")
+					  .bodyValue(new SeminarConstraints("RNS", 1000L, 5))
+					  .exchange()
+					  .expectStatus().isOk()
+					  .returnResult(SeminarResource.class).getResponseBody().blockFirst();
+
+			  assertThat(seminarResource.id()).isEqualTo(id);
 	   }
 
 	   private SeminarResource getSeminarResource(UUID uuid, LocalDate now) {
