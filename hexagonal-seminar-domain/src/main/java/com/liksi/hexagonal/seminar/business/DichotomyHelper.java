@@ -1,6 +1,7 @@
 package com.liksi.hexagonal.seminar.business;
 
 import com.liksi.hexagonal.seminar.model.Route;
+import com.liksi.hexagonal.seminar.model.RouteConsommation;
 import com.liksi.hexagonal.seminar.ports.http.ClimatiqApiClient;
 
 import java.util.ArrayList;

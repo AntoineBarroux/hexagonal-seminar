@@ -11,4 +11,8 @@ public record Seminar(
 		int attendees,
 		long carbon
 ) {
+
+	public Seminar(Airport departureAirport, Airport arrivalAirport, RouteConsommation routeConsommation, int attendees) {
+		this(UUID.randomUUID(), departureAirport, arrivalAirport, LocalDate.now(), attendees, routeConsommation.consommation());
+	}
 }
