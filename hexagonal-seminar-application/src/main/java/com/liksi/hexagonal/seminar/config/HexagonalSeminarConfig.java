@@ -1,5 +1,6 @@
 package com.liksi.hexagonal.seminar.config;
 
+import com.liksi.hexagonal.seminar.business.BestMatchFinderFactory;
 import com.liksi.hexagonal.seminar.business.SeminarFinderService;
 import com.liksi.hexagonal.seminar.business.SeminarService;
 import com.liksi.hexagonal.seminar.http.adapters.*;
@@ -43,7 +44,12 @@ public class HexagonalSeminarConfig {
     }
 
     @Bean
-    public SeminarFinderService seminarFinderService(AirlabsApiClient airlabsApiClient, ClimatiqApiClient climatiqApiClient, SeminarRepository seminarRepository) {
-        return new SeminarFinderService(airlabsApiClient, climatiqApiClient, seminarRepository);
+    public BestMatchFinderFactory dichotomyHelperFactory(ClimatiqApiClient climatiqApiClient) {
+        return new BestMatchFinderFactory(climatiqApiClient);
+    }
+
+    @Bean
+    public SeminarFinderService seminarFinderService(AirlabsApiClient airlabsApiClient, SeminarRepository seminarRepository, BestMatchFinderFactory dichotomyHelperFactory) {
+        return new SeminarFinderService(airlabsApiClient, seminarRepository, dichotomyHelperFactory);
     }
 }

@@ -25,7 +25,7 @@ class SeminarFinderServiceTest {
         airlabsApiClient = new FakeAirlabsApiClient();
         climatiqApiClient = new FakeClimatiqApiClient();
         seminarRepository = new FakeSeminarRepository();
-        seminarFinderService = new SeminarFinderService(airlabsApiClient, climatiqApiClient, seminarRepository);
+        seminarFinderService = new SeminarFinderService(airlabsApiClient, seminarRepository, new BestMatchFinderFactory(climatiqApiClient));
     }
 
     @Test

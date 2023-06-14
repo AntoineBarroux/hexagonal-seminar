@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class DichotomyHelper {
+public class BestMatchFinder {
 
     private final ClimatiqApiClient climatiqApiClient;
     private final BestResultStrategy bestResultStrategy;
     private final List<RouteConsommation> consommation;
 
-    public DichotomyHelper(final ClimatiqApiClient climatiqApiClient, BestResultStrategy bestResultStrategy) {
+    public BestMatchFinder(final ClimatiqApiClient climatiqApiClient, BestResultStrategy bestResultStrategy) {
         this.climatiqApiClient = climatiqApiClient;
         this.bestResultStrategy = bestResultStrategy;
         this.consommation = new ArrayList<>();

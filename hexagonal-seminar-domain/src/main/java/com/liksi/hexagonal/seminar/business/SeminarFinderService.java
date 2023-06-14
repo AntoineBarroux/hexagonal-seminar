@@ -5,7 +5,6 @@ import com.liksi.hexagonal.seminar.model.Route;
 import com.liksi.hexagonal.seminar.model.RouteConsommation;
 import com.liksi.hexagonal.seminar.model.Seminar;
 import com.liksi.hexagonal.seminar.ports.http.AirlabsApiClient;
-import com.liksi.hexagonal.seminar.ports.http.ClimatiqApiClient;
 import com.liksi.hexagonal.seminar.ports.persistence.SeminarRepository;
 
 import java.time.LocalDate;
@@ -18,16 +17,16 @@ import java.util.stream.Collectors;
 public class SeminarFinderService {
 
     private final AirlabsApiClient airlabsApiClient;
-    private final ClimatiqApiClient climatiqApiClient;
     private final SeminarRepository seminarRepository;
+    private final BestMatchFinderFactory bestMatchFinderFactory;
 
 
     public SeminarFinderService(final AirlabsApiClient airlabsApiClient,
-            final ClimatiqApiClient climatiqApiClient,
-            final SeminarRepository seminarRepository) {
+            final SeminarRepository seminarRepository,
+            final BestMatchFinderFactory dichotomyHelperFactory) {
         this.airlabsApiClient = airlabsApiClient;
-        this.climatiqApiClient = climatiqApiClient;
         this.seminarRepository = seminarRepository;
+        this.bestMatchFinderFactory = dichotomyHelperFactory;
     }
 
     public Optional<Seminar> findSeminarDestinationFrom(String departureIataCode, int passengersCount, Long maxConsommation) {
@@ -74,8 +73,7 @@ public class SeminarFinderService {
     }
 
     private Optional<RouteConsommation> getBestMatch(List<Route> existingRoutesMatchingConstraints, int passengersCount, Long maxConsommation) {
-        final var dichotomy = new DichotomyHelper(climatiqApiClient, new MaxConsommationStrategy());
-        return dichotomy.getBestMatch(existingRoutesMatchingConstraints, passengersCount, maxConsommation);
+        return bestMatchFinderFactory.defaultFinder().getBestMatch(existingRoutesMatchingConstraints, passengersCount, maxConsommation);
     }
 
     private static Airport getAirport(final List<Airport> airports, final String iataCode) {
